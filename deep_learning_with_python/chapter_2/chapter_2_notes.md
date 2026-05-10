@@ -85,3 +85,45 @@
 
 ## The gears of neural networks: Tensor operations 
 
+- Tensor Operations: transformations learned by deep neural networks that can be reduced to a handful of tensor operations (or tensor functions) applied to tensors of numeric data.
+
+- Element-wise Operations: Perform the same operation independently to every element.
+
+- Broadcasting: Similar to type casting but for tensor shapes. When performing addition of a 2D tensor + 1D tensor the smaller tensor will be broadcast to match the shape of the larger tensor.
+    1. Axes( called broadcast axes) are added to the smaller tensor to match the `ndim` of the larger tensor.
+    2. The smaller tensor is repeated alongside these new axes to match the full shape of the larger tensor.
+
+- Tensor product: Also called the dot product or matmul.
+![alt text](image-7.png)
+![alt text](image-8.png)
+
+- Tensor reshaping: rearranging its rows and columns to match a target shape.
+![alt text](image-9.png)
+
+- Transposition: Exchanging a matrix's rows for its columns
+![alt text](image-10.png)
+
+- Geometric interpretations of tensor operations
+
+1. Translation: adding a vector to a point will move this point by a fixed amount in a fixed direction. 
+    - Applying a translation to a set of points (an object).
+    ![alt text](image-11.png)
+
+2. Rotation: A counterclockwise rotation of a 2D vector by an angle theta can be achieved via a product with a 2 x 2 matrix: `R [[cost(theta), -sin(theta)], [sin(theta), cos(theta)]]`
+
+![alt text](image-12.png)
+
+3. Scaling: A vertical and horizontal scaling of the image (see figure 2.11) can be achieved via a product with a 2 × 2 matrix: `S = [[horizontal_factor, 0], [0, vertical_factor]]`
+![alt text](image-13.png)
+
+4. Linear Transform: A product with an arbitrary matrix implements a linear transform. Note that scaling and rotation, seen previously, are, by definition, linear transforms.
+
+5. Affine transform: The combination of a linear transform (achieved via a matrix product) and a translation (achieved via a vector addition): `y = W @ x + b` -> W matmul x + b 
+    - Same computation that is implemented in the karas.layers.Dense layer. A Dense layer without an activation function is an affine layer.
+
+6. Dense Layer w/ `relu` activation: Multiple affine transformations without activation functions collapse into a single affine transformation.
+    - Adding `relu` between Dense layers introduces nonlinearity, allowing the network to bend and reshape the representation space so complex patterns can become separable in ways a purely linear model cannot achieve.
+
+## The engine of neural networks: Gradient-based optimization
+
+
